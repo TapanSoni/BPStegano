@@ -1,4 +1,13 @@
 # BPStegano
+```
+_______  _______ _______ __
+|   _   \|   _   |   _   |  |_.-----.-----.---.-.-----.-----.
+|.  1   /|.  1   |   1___|   _|  -__|  _  |  _  |     |  _  |
+|.  _   \|.  ____|____   |____|_____|___  |___._|__|__|_____|
+|:  1    |:  |   |:  1   |          |_____|
+|::.. .  |::.|   |::.. . |
+`-------'`---'   `-------'
+```
 
 BPStegano is a steganography tool created by students at Rowan University for their graduate cryptography class.
 
@@ -39,7 +48,7 @@ python3 stegano.py
 
 #### Hiding multiple files
 
-![Hiding multiple files](Demo.files.gif)
+![Hiding multiple files](Demo/files.gif)
 
 
 ## Contributing
@@ -53,4 +62,4 @@ This piece of software is provided as is. Neither the authors or Rowan Universit
 
 **Richard Baird** - *Principle Developer*
 
-**Kriyanshi Patel** - *Contributor*
+**Kriyanshi Patel** - *Developer*
