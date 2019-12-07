@@ -75,6 +75,24 @@ BPStegano only requires the secret key and the encoded image. It will recognize 
 
 ![Extracting files](Demo/extract_files.gif)
 
+## Image comparison
+
+#### Raw string
+
+|truck.png (Original)|plain_text.png (Modified)|
+|--------------------|-------------------------|
+|![Original truck image](Demo/truck.png)|![Modified truck image](Demo/plain_text.png)|
+
+*truck.png source*: https://www.tesla.com/xNVh4yUEc3B9/04_Desktop.jpg
+
+#### Files
+
+|shuttle.png (Original)|files.png (Modified)|
+|--------------------|-------------------------|
+|![Original shuttle image](Demo/shuttle.png)|![Modified shuttle image](Demo/files.png)|
+
+*shuttle.png source*: https://images-assets.nasa.gov/image/8898508/8898508~orig.jpg
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
