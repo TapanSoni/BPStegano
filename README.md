@@ -33,6 +33,15 @@ Linux
 python3 stegano.py
 ```
 
+#### Hiding raw strings
+
+![Hiding raw strings](Demo/plain_text.gif)
+
+#### Hiding multiple files
+
+![Hiding multiple files](Demo.files.gif)
+
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
