@@ -14,10 +14,12 @@ BPStegano is a steganography tool created by students at Rowan University for th
 ## Features
 1) AES-128-CFB encryption of input data
 2) Random Least Significant Bit (LSB) pixel encoding
-3) Supports plain text (raw string) data
-4) Supports encoding of multiple files of any type
+3) Supports plain text (raw string) data hiding
+4) Supports the hiding of multiple files of any type (.pdf, .exe, .jpg, .png, .txt, .gif, etc.)
 
 ## Installation
+
+*Python 3.7.5 is required to run BPStegano*
 
 
 ```bash
@@ -75,6 +77,6 @@ This piece of software is provided as is. Neither the authors or Rowan Universit
 ## Authors
 **Tapan Soni** - *Principle Developer* - [TapanSoni](https://github.com/TapanSoni)
 
-**Richard Baird** - *Principle Developer*
+**Richard Baird** - *Principle Developer* - [RickBaird](https://github.com/RickBaird)
 
 **Kriyanshi Patel** - *Developer*
