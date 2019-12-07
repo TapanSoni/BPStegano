@@ -1,0 +1,11 @@
+bitstring==3.1.6
+cffi==1.13.2
+colorama==0.4.3
+cryptography==2.8
+Pillow==6.2.1
+progress-bar==8
+pycparser==2.19
+pyfiglet==0.8.post1
+Send2Trash==1.5.0
+six==1.13.0
+termcolor==1.1.0
