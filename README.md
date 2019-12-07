@@ -42,14 +42,29 @@ Linux
 python3 stegano.py
 ```
 
-#### Hiding raw strings
+#### Hiding raw strings inside an image
+
+BPStegano supports raw strings of any length (limited only by the size of the image).
 
 ![Hiding raw strings](Demo/plain_text.gif)
 
-#### Hiding multiple files
+#### Hiding files inside an image
+
+BPStegano supports hiding of any type of file and any amount (limited only by the size of the image) inside an image.
 
 ![Hiding multiple files](Demo/files.gif)
 
+#### Extracting raw strings from an image
+
+BPStegano extracts the raw string and displays it for you in terminal.
+
+![Extracting raw strings](Demo/extract_plain_text.gif)
+
+#### Extracting files from an image
+
+BPStegano only requires the secret key and the encoded image. It will recognize whether an image is hiding a raw string or files inside it.
+
+![Extracting files](Demo/extract_files.gif)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
