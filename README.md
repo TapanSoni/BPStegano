@@ -26,7 +26,7 @@ BPStegano is a steganography tool created by students at Rowan University for th
 
 ## Installation
 
-*Python 3.7.5 is required to run BPStegano*
+*Python 3.6.8 or higher is required to run BPStegano*
 
 
 ```bash
