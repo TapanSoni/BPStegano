@@ -11,6 +11,13 @@ _______  _______ _______ __
 
 BPStegano is a steganography tool created by students at Rowan University for their graduate cryptography class.
 
+## Authors
+**Tapan Soni** - *Principle Developer* - [TapanSoni](https://github.com/TapanSoni)
+
+**Richard Baird** - *Principle Developer* - [RickBaird](https://github.com/RickBaird)
+
+**Kriyanshi Patel** - *Developer*
+
 ## Features
 1) AES-128-CFB encryption of input data
 2) Random Least Significant Bit (LSB) pixel encoding
@@ -72,11 +79,4 @@ BPStegano only requires the secret key and the encoded image. It will recognize 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Disclaimer
-This piece of software is provided as is. Neither the authors or Rowan University take any responsibility whatsoever for any action performed by a user of this software, or this software, intentionally or unintentionally.
-
-## Authors
-**Tapan Soni** - *Principle Developer* - [TapanSoni](https://github.com/TapanSoni)
-
-**Richard Baird** - *Principle Developer* - [RickBaird](https://github.com/RickBaird)
-
-**Kriyanshi Patel** - *Developer*
+This software is provided as is. Neither the authors or Rowan University take any responsibility whatsoever for any action performed by a user of this software, or any actions performed by this software outside of the user's control, intentionally or unintentionally.
