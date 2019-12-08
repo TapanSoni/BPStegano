@@ -1,5 +1,6 @@
 # BPStegano
-
+![GitHub All Releases](https://img.shields.io/github/downloads/TapanSoni/BPStegano/total?style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/TapanSoni/BPStegano?style=for-the-badge)
 ```
 _______  _______ _______ __
 |   _   \|   _   |   _   |  |_.-----.-----.---.-.-----.-----.
