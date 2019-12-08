@@ -86,6 +86,12 @@ BPStegano only requires the secret key and the encoded image. It will recognize 
 
 *truck.png source*: https://www.tesla.com/xNVh4yUEc3B9/04_Desktop.jpg
 
+|Image|SHA256|
+|----------|------|
+|truck.png|2db4a6d1e195dd4e26ea1a69b10977b0889dd5e48db30ddd3fd77d70dfd6eb9f|
+|plain_text.png|13b6d99758cfe69cec507561b41a87cc7832b2339bfdcdac15f74a9bde7fd489|
+
+
 #### Files
 
 |shuttle.png (Original)|files.png (Modified)|
@@ -93,6 +99,11 @@ BPStegano only requires the secret key and the encoded image. It will recognize 
 |![Original shuttle image](Demo/shuttle.png)|![Modified shuttle image](Demo/files.png)|
 
 *shuttle.png source*: https://images-assets.nasa.gov/image/8898508/8898508~orig.jpg
+
+|Image|SHA256|
+|----------|------|
+|shuttle.png|9b03df019b722003061ec52ab207bff7e69fea23d42b62765ce8d4820d122f70|
+|files.png|71de2439a46c3ed424e9ed477b5c1ef0e52e23d9bafbf615511033085cd0f13e|
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
