@@ -502,27 +502,6 @@ def file_s_input():
         else:  # Check if valid file
             print()
 
-            # Check if the file exists
-            # while (fileName != "-1" and fileExistsCheck == 1):
-            #     fileExistsCheck = check_file_exists(fileName, files)
-
-            #     print()
-            #     print("ELSE - 3RD OPTION")
-
-            #     # 0 - File Exists, 1 - File doesn't exist or cannot be opened
-            #     if(fileExistsCheck != 0):
-            #         fileName = input(
-            #             "Enter the file you want to encode (-1 to quit, 0 to show current files to be encoded) -> "
-            #         )
-
-            #     if (fileName == '0'):
-            #         if (len(files) == 0):
-            #             print()
-            #             print("No files.")
-            #             print()
-            #         else:
-            #             print_current_files(files)
-
             # If filename isn't -1 -> Then check if the file is valid
             if (fileName != "-1"):
                 # Check for file
