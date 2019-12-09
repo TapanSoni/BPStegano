@@ -35,7 +35,14 @@ from bitstring import BitArray
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 
-import sys, os, hashlib, random, zipfile, send2trash, time, shutil
+import sys
+import os
+import hashlib
+import random
+import zipfile
+import send2trash
+import time
+import shutil
 from colorama import init
 from colorama import Fore, Back, Style
 from termcolor import colored
@@ -1089,7 +1096,8 @@ def find(decryptionKey, srcImgFile):
             binary_g_last_digit = binary_g[7]
             binary_b_last_digit = binary_b[7]
 
-            cipherTextLength += binary_r_last_digit + binary_g_last_digit + binary_b_last_digit
+            cipherTextLength += binary_r_last_digit + \
+                binary_g_last_digit + binary_b_last_digit
 
     #########################################################################################################
     #########################################################################################################
