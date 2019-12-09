@@ -1,5 +1,6 @@
 # BPStegano
-
+![GitHub All Releases](https://img.shields.io/github/downloads/TapanSoni/BPStegano/total?style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/TapanSoni/BPStegano?style=for-the-badge)
 ```
 _______  _______ _______ __
 |   _   \|   _   |   _   |  |_.-----.-----.---.-.-----.-----.
@@ -20,7 +21,7 @@ BPStegano is a steganography tool created by students at Rowan University for th
 **Kriyanshi Patel** - *Developer*
 
 ## Features
-1) AES-128-CFB encryption of input data
+1) AES-128 encryption of input data
 2) Random Least Significant Bit (LSB) pixel encoding
 3) Supports plain text (raw string) data hiding
 4) Supports the hiding of multiple files of any type (.pdf, .exe, .jpg, .png, .txt, .gif, etc.)
