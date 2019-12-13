@@ -18,7 +18,7 @@ BPStegano is a steganography tool created by students at Rowan University for th
 
 **Richard Baird** - *Principle Developer* - [RickBaird](https://github.com/RickBaird)
 
-**Kriyanshi Patel** - *Developer*
+**Kriyanshi Patel** - *Contributor*
 
 ## Features
 1) AES-128 encryption of input data
