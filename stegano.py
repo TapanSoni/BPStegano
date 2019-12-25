@@ -747,15 +747,18 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
     cipherLenIterator = 0
 
     # Encode the cipher binary length into the header pixels -- 10 pixels
-    for i in range(1):
-        for j in range(10):
+    for row in range(1):
+        for col in range(10):
             # pixelManipulator[0] = 8-bit r value
             # pixelManipulator[1] = 8-bit g value
             # pixelManipulator[2] = 8-bit b value
 
-            binary_r = decimal_to_binary(pixelManipulator[i, j][0]).zfill(8)
-            binary_g = decimal_to_binary(pixelManipulator[i, j][1]).zfill(8)
-            binary_b = decimal_to_binary(pixelManipulator[i, j][2]).zfill(8)
+            binary_r = decimal_to_binary(
+                pixelManipulator[col, row][0]).zfill(8)
+            binary_g = decimal_to_binary(
+                pixelManipulator[col, row][1]).zfill(8)
+            binary_b = decimal_to_binary(
+                pixelManipulator[col, row][2]).zfill(8)
 
             binary_r = binary_r[:7] + cipherBitsLengthBinary[cipherLenIterator]
             binary_g = binary_g[:7] + cipherBitsLengthBinary[cipherLenIterator
@@ -771,7 +774,7 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
             # Get the bit values of the pixel and change them
 
             # This will write each RBG (0-2) value in pixels 0-9 with 1 bit of the cipherBitsLengthBinary string
-            pixelManipulator[i, j] = (encoded_r, encoded_g, encoded_b)
+            pixelManipulator[col, row] = (encoded_r, encoded_g, encoded_b)
             cipherLenIterator += 3
 
     # zip header -> 50 4B 03 04 = 1010000010010110000001100000100 in binary
@@ -782,23 +785,20 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
         zipHeaderBinary = "1010000010010110000001100000100"
 
         # pixel (0,10)
-        for i in range(1):
-            for j in range(10, 20, 1):
+        for row in range(1):
+            for col in range(10, 20, 1):
                 binary_r = decimal_to_binary(
-                    pixelManipulator[i, j][0]).zfill(8)
+                    pixelManipulator[col, row][0]).zfill(8)
                 binary_g = decimal_to_binary(
-                    pixelManipulator[i, j][1]).zfill(8)
+                    pixelManipulator[col, row][1]).zfill(8)
                 binary_b = decimal_to_binary(
-                    pixelManipulator[i, j][2]).zfill(8)
+                    pixelManipulator[col, row][2]).zfill(8)
 
-                # print("ZipHeaderBinary[" + str(zipHeaderIterator) + "] -> " + str(zipHeaderBinary[zipHeaderIterator]))
                 binary_r = binary_r[:7] + zipHeaderBinary[zipHeaderIterator]
 
-                # print("ZipHeaderBinary[" + str(zipHeaderIterator + 1) + "] -> " + str(zipHeaderBinary[zipHeaderIterator + 1]))
                 binary_g = binary_g[:7] + zipHeaderBinary[zipHeaderIterator +
                                                           1]
 
-                # print("ZipHeaderBinary[" + str(zipHeaderIterator + 2) + "] -> " + str(zipHeaderBinary[zipHeaderIterator + 2]))
                 binary_b = binary_b[:7] + zipHeaderBinary[zipHeaderIterator +
                                                           2]
 
@@ -806,11 +806,11 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
                 encoded_g = int(binary_g, 2)
                 encoded_b = int(binary_b, 2)
 
-                pixelManipulator[i, j] = (encoded_r, encoded_g, encoded_b)
+                pixelManipulator[col, row] = (encoded_r, encoded_g, encoded_b)
                 zipHeaderIterator += 3
 
         # Encode pixel # 11 -> # 21
-        binary_r = decimal_to_binary(pixelManipulator[i, j][0]).zfill(8)
+        binary_r = decimal_to_binary(pixelManipulator[col, row][0]).zfill(8)
 
         binary_r = binary_r[:7] + zipHeaderBinary[zipHeaderIterator]
 
@@ -849,8 +849,8 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
 
     encodedCount = 0
     sub = sizeOfCipher % 3
-    while (row < imageWorker.size[0] and cipherTextIterator < sizeOfCipher):
-        while (col < imageWorker.size[1]
+    while (row < imageWorker.size[1] and cipherTextIterator < sizeOfCipher):
+        while (col < imageWorker.size[0]
                and cipherTextIterator < sizeOfCipher):
             # indexLoc = cipherTextIterator % 3
 
@@ -859,9 +859,9 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
 
                 if (str(big_rand_bin)[randomNumIterator] == "1"):
                     # 0b10101010
-                    binaryDigit_r = pixelManipulator[row, col][0]
-                    binaryDigit_g = pixelManipulator[row, col][1]
-                    binaryDigit_b = pixelManipulator[row, col][2]
+                    binaryDigit_r = pixelManipulator[col, row][0]
+                    binaryDigit_g = pixelManipulator[col, row][1]
+                    binaryDigit_b = pixelManipulator[col, row][2]
 
                     # 0b10101010 -> 10101010
                     binaryDigit_r = bin(binaryDigit_r)[2:].zfill(8)
@@ -882,7 +882,7 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
                     encodedDecimal_b = int(encodedBinaryDigit_b, 2)
 
                     # R, G, B -> New R, G, B
-                    pixelManipulator[row, col] = (encodedDecimal_r,
+                    pixelManipulator[col, row] = (encodedDecimal_r,
                                                   encodedDecimal_g,
                                                   encodedDecimal_b)
 
@@ -890,33 +890,33 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
                     cipherTextIterator += 3
             elif (sub == 1 and randomNumIterator < totalEncodableLen):
                 if (str(big_rand_bin)[randomNumIterator] == "1"):
-                    binaryDigit_r = pixelManipulator[row, col][0]
+                    binaryDigit_r = pixelManipulator[col, row][0]
                     binaryDigit_r = bin(binaryDigit_r)[2:].zfill(8)
                     encodedBinaryDigit_r = binaryDigit_r[:7] + str(
                         cipherBits)[cipherTextIterator]
                     encodedDecimal_r = int(encodedBinaryDigit_r, 2)
-                    pixelManipulator[row, col] = (
-                        encodedDecimal_r, pixelManipulator[row, col][1],
-                        pixelManipulator[row, col][2])
+                    pixelManipulator[col, row] = (
+                        encodedDecimal_r, pixelManipulator[col, row][1],
+                        pixelManipulator[col, row][2])
 
                     encodedCount += 1
                     cipherTextIterator += 1
             elif (sub == 2 and randomNumIterator < totalEncodableLen):
                 if (str(big_rand_bin)[randomNumIterator] == "1"):
-                    binaryDigit_r = pixelManipulator[row, col][0]
+                    binaryDigit_r = pixelManipulator[col, row][0]
                     binaryDigit_r = bin(binaryDigit_r)[2:].zfill(8)
                     encodedBinaryDigit_r = binaryDigit_r[:7] + str(
                         cipherBits)[cipherTextIterator]
                     encodedDecimal_r = int(encodedBinaryDigit_r, 2)
 
-                    binaryDigit_g = pixelManipulator[row, col][1]
+                    binaryDigit_g = pixelManipulator[col, row][1]
                     binaryDigit_g = bin(binaryDigit_g)[2:].zfill(8)
                     encodedBinaryDigit_g = binaryDigit_g[:7] + str(cipherBits)[
                         cipherTextIterator + 1]
                     encodedDecimal_g = int(encodedBinaryDigit_g, 2)
-                    pixelManipulator[row, col] = (
+                    pixelManipulator[col, row] = (
                         encodedDecimal_r, encodedDecimal_g,
-                        pixelManipulator[row, col][2])
+                        pixelManipulator[col, row][2])
 
                     encodedCount += 2
                     cipherTextIterator += 2
@@ -939,17 +939,17 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
         invertedRandCounter = 0
         col = 0
         row = 1
-        while (row < imageWorker.size[0]
+        while (row < imageWorker.size[1]
                and cipherTextIterator < sizeOfCipher):
-            while (col < imageWorker.size[1]
+            while (col < imageWorker.size[0]
                    and cipherTextIterator < sizeOfCipher):
                 # indexLoc = cipherTextIterator % 3
                 if (cipherTextIterator < sizeOfCipher - sub
                         and invertedRandCounter < totalEncodableLen):
                     if (str(big_rand_bin)[invertedRandCounter] == "0"):
-                        binaryDigit_r = pixelManipulator[row, col][0]
-                        binaryDigit_g = pixelManipulator[row, col][1]
-                        binaryDigit_b = pixelManipulator[row, col][2]
+                        binaryDigit_r = pixelManipulator[col, row][0]
+                        binaryDigit_g = pixelManipulator[col, row][1]
+                        binaryDigit_b = pixelManipulator[col, row][2]
 
                         binaryDigit_r = bin(binaryDigit_r)[2:].zfill(8)
                         binaryDigit_g = bin(binaryDigit_g)[2:].zfill(8)
@@ -966,7 +966,7 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
                         encodedDecimal_g = int(encodedBinaryDigit_g, 2)
                         encodedDecimal_b = int(encodedBinaryDigit_b, 2)
 
-                        pixelManipulator[row, col] = (encodedDecimal_r,
+                        pixelManipulator[col, row] = (encodedDecimal_r,
                                                       encodedDecimal_g,
                                                       encodedDecimal_b)
 
@@ -974,36 +974,36 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
                         cipherTextIterator += 3
                 elif (sub == 1 and invertedRandCounter < totalEncodableLen):
                     if (str(big_rand_bin)[invertedRandCounter] == "0"):
-                        binaryDigit_r = pixelManipulator[row, col][0]
+                        binaryDigit_r = pixelManipulator[col, row][0]
                         binaryDigit_r = bin(binaryDigit_r)[2:].zfill(8)
                         encodedBinaryDigit_r = binaryDigit_r[:7] + str(
                             cipherBits)[cipherTextIterator]
                         encodedDecimal_r = int(encodedBinaryDigit_r, 2)
-                        pixelManipulator[row, col] = (
-                            encodedDecimal_r, pixelManipulator[row, col][1],
-                            pixelManipulator[row, col][2])
+                        pixelManipulator[col, row] = (
+                            encodedDecimal_r, pixelManipulator[col, row][1],
+                            pixelManipulator[col, row][2])
 
                         encodedCount += 1
                         cipherTextIterator += 1
                 elif (sub == 2 and invertedRandCounter < totalEncodableLen):
                     if (str(big_rand_bin)[invertedRandCounter] == "0"):
-                        binaryDigit_r = pixelManipulator[row, col][0]
+                        binaryDigit_r = pixelManipulator[col, row][0]
                         binaryDigit_r = bin(binaryDigit_r)[2:].zfill(8)
                         encodedBinaryDigit_r = binaryDigit_r[:7] + str(
                             cipherBits)[cipherTextIterator]
                         encodedDecimal_r = int(encodedBinaryDigit_r, 2)
-                        pixelManipulator[row, col] = (
-                            encodedDecimal_r, pixelManipulator[row, col][1],
-                            pixelManipulator[row, col][2])
+                        pixelManipulator[col, row] = (
+                            encodedDecimal_r, pixelManipulator[col, row][1],
+                            pixelManipulator[col, row][2])
 
-                        binaryDigit_g = pixelManipulator[row, col][1]
+                        binaryDigit_g = pixelManipulator[col, row][1]
                         binaryDigit_g = bin(binaryDigit_g)[2:].zfill(8)
                         encodedBinaryDigit_g = binaryDigit_g[:7] + str(
                             cipherBits)[cipherTextIterator + 1]
                         encodedDecimal_g = int(encodedBinaryDigit_g, 2)
-                        pixelManipulator[row, col] = (
-                            pixelManipulator[row, col][0], encodedDecimal_g,
-                            pixelManipulator[row, col][2])
+                        pixelManipulator[col, row] = (
+                            pixelManipulator[col, row][0], encodedDecimal_g,
+                            pixelManipulator[col, row][2])
 
                         encodedCount += 2
                         cipherTextIterator += 2
@@ -1079,17 +1079,13 @@ def find(decryptionKey, srcImgFile):
     # Going through the image
     for row in range(1):
         for col in range(10):
-            # pixelManipulator[0] = 8-bit r value
-            # pixelManipulator[1] = 8-bit g value
-            # pixelManipulator[2] = 8-bit b value
-
             # Get the binary RGB values
             binary_r = decimal_to_binary(
-                pixelManipulator[row, col][0]).zfill(8)
+                pixelManipulator[col, row][0]).zfill(8)
             binary_g = decimal_to_binary(
-                pixelManipulator[row, col][1]).zfill(8)
+                pixelManipulator[col, row][1]).zfill(8)
             binary_b = decimal_to_binary(
-                pixelManipulator[row, col][2]).zfill(8)
+                pixelManipulator[col, row][2]).zfill(8)
 
             # Get the last digit of the binary RGB value
             binary_r_last_digit = binary_r[7]
@@ -1114,17 +1110,13 @@ def find(decryptionKey, srcImgFile):
         # Get binary from pixel's 10 -> 20
         for row in range(1):
             for col in range(10, 20, 1):
-                # pixelManipulator[0] = 8-bit r value
-                # pixelManipulator[1] = 8-bit g value
-                # pixelManipulator[2] = 8-bit b value
-
                 # Get the binary RGB values
                 binary_r = decimal_to_binary(
-                    pixelManipulator[row, col][0]).zfill(8)
+                    pixelManipulator[col, row][0]).zfill(8)
                 binary_g = decimal_to_binary(
-                    pixelManipulator[row, col][1]).zfill(8)
+                    pixelManipulator[col, row][1]).zfill(8)
                 binary_b = decimal_to_binary(
-                    pixelManipulator[row, col][2]).zfill(8)
+                    pixelManipulator[col, row][2]).zfill(8)
 
                 # Get the last digit of the binary RGB value
                 binary_r_last_digit = binary_r[7]
@@ -1175,8 +1167,8 @@ def find(decryptionKey, srcImgFile):
     decodeCount = 0
     sub = messageLength % 3
 
-    while (row < imageWorker.size[0] and cipherTextIterator < messageLength):
-        while (col < imageWorker.size[1]
+    while (row < imageWorker.size[1] and cipherTextIterator < messageLength):
+        while (col < imageWorker.size[0]
                and cipherTextIterator < messageLength):
             # indexLoc = cipherTextIterator % 3
 
@@ -1185,9 +1177,9 @@ def find(decryptionKey, srcImgFile):
                 # If the random number[index] == 1, then there is data encoded
                 if (str(big_rand_bin)[randomNumberIterator] == "1"):
                     # Get the R, G, or B value - based on the modulo calculation
-                    binaryDigit_r = pixelManipulator[row, col][0]
-                    binaryDigit_g = pixelManipulator[row, col][1]
-                    binaryDigit_b = pixelManipulator[row, col][2]
+                    binaryDigit_r = pixelManipulator[col, row][0]
+                    binaryDigit_g = pixelManipulator[col, row][1]
+                    binaryDigit_b = pixelManipulator[col, row][2]
 
                     # Turn the R, G, or B value into binary
                     binaryDigit_r = decimal_to_binary(binaryDigit_r).zfill(8)
@@ -1202,7 +1194,7 @@ def find(decryptionKey, srcImgFile):
                     cipherTextIterator += 3
             elif (sub == 1 and randomNumberIterator < totalEncodableLen):
                 if (str(big_rand_bin)[randomNumberIterator] == "1"):
-                    binaryDigit_r = pixelManipulator[row, col][0]
+                    binaryDigit_r = pixelManipulator[col, row][0]
                     binaryDigit_r = decimal_to_binary(binaryDigit_r).zfill(8)
                     cipherTextString += binaryDigit_r[7]
 
@@ -1210,11 +1202,11 @@ def find(decryptionKey, srcImgFile):
                     cipherTextIterator += 1
             elif (sub == 2 and randomNumberIterator < totalEncodableLen):
                 if (str(big_rand_bin)[randomNumberIterator] == "1"):
-                    binaryDigit_r = pixelManipulator[row, col][0]
+                    binaryDigit_r = pixelManipulator[col, row][0]
                     binaryDigit_r = decimal_to_binary(binaryDigit_r).zfill(8)
                     cipherTextString += binaryDigit_r[7]
 
-                    binaryDigit_g = pixelManipulator[row, col][1]
+                    binaryDigit_g = pixelManipulator[col, row][1]
                     binaryDigit_g = decimal_to_binary(binaryDigit_g).zfill(8)
                     cipherTextString += binaryDigit_g[7]
 
@@ -1236,9 +1228,9 @@ def find(decryptionKey, srcImgFile):
         invertedRandCounter = 0  # new add
         col = 0
         row = 1
-        while (row < imageWorker.size[0]
+        while (row < imageWorker.size[1]
                and cipherTextIterator < messageLength):
-            while (col < imageWorker.size[1]
+            while (col < imageWorker.size[0]
                    and cipherTextIterator < messageLength):
 
                 if (cipherTextIterator < messageLength - sub
@@ -1247,9 +1239,9 @@ def find(decryptionKey, srcImgFile):
                     # overflow data that is.
                     if (str(big_rand_bin)[invertedRandCounter] == "0"):
                         # Get the R, G, or B value - based on the modulo calculation
-                        binaryDigit_r = pixelManipulator[row, col][0]
-                        binaryDigit_g = pixelManipulator[row, col][1]
-                        binaryDigit_b = pixelManipulator[row, col][2]
+                        binaryDigit_r = pixelManipulator[col, row][0]
+                        binaryDigit_g = pixelManipulator[col, row][1]
+                        binaryDigit_b = pixelManipulator[col, row][2]
 
                         # Turn the R, G, or B value into binary
                         binaryDigit_r = decimal_to_binary(binaryDigit_r).zfill(
@@ -1267,7 +1259,7 @@ def find(decryptionKey, srcImgFile):
                         cipherTextIterator += 3
                 elif (sub == 1 and invertedRandCounter < totalEncodableLen):
                     if (str(big_rand_bin)[invertedRandCounter] == "0"):
-                        binaryDigit_r = pixelManipulator[row, col][0]
+                        binaryDigit_r = pixelManipulator[col, row][0]
                         binaryDigit_r = decimal_to_binary(binaryDigit_r).zfill(
                             8)
                         cipherTextString += binaryDigit_r[7]
@@ -1276,7 +1268,7 @@ def find(decryptionKey, srcImgFile):
                         cipherTextIterator += 1
                 elif (sub == 2 and invertedRandCounter < totalEncodableLen):
                     if (str(big_rand_bin)[invertedRandCounter] == "0"):
-                        binaryDigit_r = pixelManipulator[row, col][0]
+                        binaryDigit_r = pixelManipulator[col, row][0]
                         binaryDigit_r = decimal_to_binary(binaryDigit_r).zfill(
                             8)
                         cipherTextString += binaryDigit_r[7]
