@@ -36,7 +36,7 @@ git clone https://github.com/TapanSoni/BPStegano
 
 cd BPStegano
 
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 
