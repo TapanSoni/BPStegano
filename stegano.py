@@ -16,7 +16,9 @@ names of each of the creators.
 
 [AUTHORS]
 
-Tapan Soni, Richard Baird, and Kriyanshi Patel
+Tapan Soni - Principle Developer
+Richard Baird - Developer
+Kriyanshi Patel - Contributor
 
 [FUNCTIONALITY]
 
