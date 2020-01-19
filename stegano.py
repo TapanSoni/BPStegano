@@ -17,7 +17,7 @@ names of each of the creators.
 [AUTHORS]
 
 Tapan Soni - Principle Developer
-Richard Baird - Developer
+Richard Baird - Principle Developer
 Kriyanshi Patel - Contributor
 
 [FUNCTIONALITY]
