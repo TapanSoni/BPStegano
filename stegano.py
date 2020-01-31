@@ -36,6 +36,10 @@ from PIL import Image
 from bitstring import BitArray
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
+from colorama import init
+from colorama import Fore, Back, Style
+from termcolor import colored
+from progress_bar import ProgressBar, InitBar
 
 import sys
 import os
@@ -45,11 +49,7 @@ import zipfile
 import send2trash
 import time
 import shutil
-from colorama import init
-from colorama import Fore, Back, Style
-from termcolor import colored
 
-from progress_bar import ProgressBar, InitBar
 
 # To make termcolor works
 init()
