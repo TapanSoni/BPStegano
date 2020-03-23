@@ -114,3 +114,6 @@ This software is provided as is. Neither the authors or Rowan University take an
 
 ## Intellectual Property
 This piece of software is fully owned by Tapan Soni. BPStegano is free to use and modify for commercial and personal use under the following condition: Proper credit must be given to the authors of BPStegano in any and all cases each and everytime.
+
+## Academic Paper
+BPStegano is the subject of a academic research paper submitted and accepted to the 2020 National Cyber Summit in Huntsville, Alabama. Appropriate links to the paper will be updated at a later date .
