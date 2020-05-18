@@ -113,7 +113,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 This software is provided as is. Neither the authors nor Rowan University take any responsibility whatsoever for any action performed by a user of this software, or any actions performed by this software outside of the user's control, intentionally or unintentionally.
 
 ## Intellectual Property
-This piece of software is fully owned by Tapan Soni. BPStegano is free to use and modify for commercial and personal use under the following condition: Proper credit must be given to the authors of BPStegano in any and all cases each and everytime.
+This piece of software is fully owned by Tapan Soni. BPStegano is free to use and modify for personal use only under the following condition: **Proper credit must be given to the authors of BPStegano in any and all cases each and everytime.** For commercial use or for any other use that's not personal, for example but not limited to public use or for profit, Tapan Soni must be contacted before usage is authorized.
 
 ## Academic Paper
 BPStegano is the subject of a academic research paper submitted and accepted to the 2020 National Cyber Summit in Huntsville, Alabama. Appropriate links to the paper will be updated at a later date .
