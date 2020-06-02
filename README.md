@@ -106,6 +106,9 @@ BPStegano only requires the secret key and the encoded image. It will recognize 
 |shuttle.png|9b03df019b722003061ec52ab207bff7e69fea23d42b62765ce8d4820d122f70|
 |files.png|71de2439a46c3ed424e9ed477b5c1ef0e52e23d9bafbf615511033085cd0f13e|
 
+## Code of Conduct
+Review the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for additional details.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. See [CONTRIBUTING.md](CONTRIBUTING.md) for additional details and requirements.
 
