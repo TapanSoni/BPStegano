@@ -17,8 +17,8 @@ names of each of the creators.
 [AUTHORS]
 
 Tapan Soni - Principle Developer
-Richard Baird - Principle Developer
-Kriyanshi Patel - Contributor
+Richard Baird - Devloper
+Kriyanshi Patel - Contributor - Colors
 
 [FUNCTIONALITY]
 
