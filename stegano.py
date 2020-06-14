@@ -285,6 +285,12 @@ def show_banner():
     # custom_fig = Figlet(font="graffiti")
     custom_fig = Figlet(font="cricket")
     print(colored(custom_fig.renderText("BPStegano"), 'green'))
+    print(colored("Created by Tapan Soni and others.", "red"))
+    print()
+    print(colored("Visit -> https://github.com/TapanSoni/BPStegano for additional details", "red"))
+    print()
+    print(colored("FOR EDUCATIONAL USE ONLY. The authors do not take any responsibility for your actions whatsoever.", "red"))
+    print()
 
 
 def main_menu():
