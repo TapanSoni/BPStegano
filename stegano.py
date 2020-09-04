@@ -17,7 +17,7 @@ names of each of the creators.
 [AUTHORS]
 
 Tapan Soni - Principle Developer
-Richard Baird - Devloper
+Richard Baird - Developer
 Kriyanshi Patel - Contributor - Colors
 
 [FUNCTIONALITY]
@@ -60,11 +60,11 @@ from PIL import Image
 from bitstring import BitArray
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
-from colorama import init
-from colorama import Fore, Back, Style
 from termcolor import colored
 from progress_bar import ProgressBar, InitBar
+from utils import print_with_new_lines, decimal_to_binary, bitstring_to_bytes
 
+import colorama
 import sys
 import os
 import hashlib
@@ -72,19 +72,18 @@ import random
 import zipfile
 import send2trash
 import time
-import shutil
 
 
 # To make termcolor works
-init()
+colorama.init()
 
 
 def print_current_files(files):
     print()
     print(colored("Current files selected to be embedded:", 'blue'))
     print("\u001b[36;1m--------------------------------------\u001b[0m")
-    for i in files:
-        print(colored(str(files.index(i) + 1) + ") " + str(i), 'green'))
+    for index, file in enumerate(files):
+        print(colored(str(index + 1) + ") " + str(file), 'green'))
     print("\u001b[36;1m--------------------------------------\u001b[0m")
     print(colored("Total files -> " + str(len(files)), 'magenta'))
     print()
@@ -159,9 +158,7 @@ def check_file_exists(fileName, files):
             fileObject = open(fileName, "r")
             fileObject.close()
         except:
-            print()
-            print(colored("Invalid file path. Try again!", 'red'))
-            print()
+            print_with_new_lines(colored("Invalid file path. Try again!", 'red'))
             return 1
 
         if (fileName in files):
@@ -172,50 +169,38 @@ def check_file_exists(fileName, files):
 
         return 0
     except IOError:
-        print()
-        print(colored("Invalid file path. Try again!", 'red'))
-        print()
+        print_with_new_lines(colored("Invalid file path. Try again!", 'red'))
         return 1
 
 
 # Checks the extension of an image file
-def check_extension(fileName):
-    extension = fileName[-4:].lower()
-
-    if (extension != '.png'):
-        print()
-        print(
+def is_image_file(fileName):
+    is_image = fileName.lower().endswith(".png")
+    if not is_image:
+        print_with_new_lines(
             colored(
                 "Invalid file type -- Images must be in PNG format. Try again!",
-                'red'))
-        print()
-        return 1
-    else:
-        return 0
+                'red')
+        )
+    return is_image
 
 
 # Checks if the image has enough space for the zip header
-def check_file_size_zip(fileName):
+def has_enough_space_for_header(fileName):
+    REQUIRED_HEADER_SPACE_BYTES = 21
+
     try:
         imageWorker = Image.open(fileName)
         length = imageWorker.size[0]
-
-        if (length < 21):
-            return 1
-        else:
-            return 0
+        return length >= REQUIRED_HEADER_SPACE_BYTES
     except:
-        print()
-        print(colored("Invalid file. Try again!", 'red'))
-        print()
+        print_with_new_lines(colored("Invalid file. Try again!", 'red'))
 
 
 # Checks both the file extension and whether or not the file can be opened or not
 def check_file(fileName):
-    extenCheck = check_extension(fileName)
-
     # Failed extension check
-    if (extenCheck == 1):
+    if not is_image_file(fileName):
         return 1
 
     # Check if available -- if not, then return 1
@@ -224,9 +209,7 @@ def check_file(fileName):
         fileObject.close()
         return 0
     except IOError:
-        print()
-        print(colored("Invalid file path. Try again!", 'red'))
-        print()
+        print_with_new_lines(colored("Invalid file path. Try again!", 'red'))
         return 1
 
 
@@ -272,15 +255,6 @@ def check_image_size(fileName, secretMsg, encryptionKey):
         return 0
 
 
-def decimal_to_binary(n):
-    return bin(n).replace("0b", "")
-
-
-def bitstring_to_bytes(s):
-    # return int(s, 2).to_bytes((len(s) + 7) // 8, byteorder='big')
-    return bytes(int(s[i:i + 8], 2) for i in range(0, len(s), 8))
-
-
 def show_banner():
     # custom_fig = Figlet(font="graffiti")
     custom_fig = Figlet(font="cricket")
@@ -293,7 +267,7 @@ def show_banner():
     print()
 
 
-def main_menu():
+def show_main_menu():
     print(
         colored("Select a specific functionality from the menu below", 'cyan'))
     print()
@@ -373,10 +347,8 @@ def raw_text_input():
         # Replace the spaces in the file path -- at either end and in between
         encodeDstImgName = encodeDstImgName.replace(" ", "")
 
-        dstImageFileNameCheck = check_extension(encodeDstImgName)
-
         # Valid file name
-        if (encodeDstImgName != "" and dstImageFileNameCheck == 0):
+        if encodeDstImgName != "" and is_image_file(encodeDstImgName):
             dstImageInputCheck = True
         else:
             print()
@@ -416,10 +388,7 @@ def file_s_input():
         if (encodeInputKey != ""):
             secretKeyInputCheck = True
         else:
-            print()
-            print(
-                colored("You need to provide a SECRET KEY. Try again!", 'red'))
-            print()
+            print_with_new_lines(colored("You need to provide a SECRET KEY. Try again!", 'red'))
 
     # Check for valid source image
     while (srcImageInputCheck == 1):
@@ -434,13 +403,9 @@ def file_s_input():
         # If image exists, check it's horizontal length to see if it matches the header requirements
         if (srcImageInputCheck == 0):
 
-            # 1 -> Image is too small, 0 -> Image is large enough
-            headerCheck = check_file_size_zip(encodeSrcImgPath)
-            if (headerCheck == 1):
+            if not has_enough_space_for_header(encodeSrcImgPath):
                 srcImageInputCheck = 1
-                print()
-                print(colored("The image is too small. Try again!", 'red'))
-                print()
+                print_with_new_lines(colored("The image is too small. Try again!", 'red'))
 
     # Check for valid output image name
     while (dstImageInputCheck == False):
@@ -449,18 +414,14 @@ def file_s_input():
         # Replace the spaces in the file path -- at either end and in between
         encodeDstImgName = encodeDstImgName.replace(" ", "")
 
-        dstImageFileNameCheck = check_extension(encodeDstImgName)
-
         # Valid file name
-        if (encodeDstImgName != "" and dstImageFileNameCheck == 0):
+        if (encodeDstImgName != "" and is_image_file(encodeDstImgName)):
             dstImageInputCheck = True
         else:
-            print()
-            print(
+            print_with_new_lines(
                 colored(
                     "You need to provide a name and extension (e.g. test.png) for the destination image",
                     'red'))
-            print()
 
     # 1 -- No, 0 -- Yes
     fileExistsCheck = 1
@@ -475,9 +436,7 @@ def file_s_input():
         if (fileName == "0"):  # Show files
 
             if (len(files) == 0):
-                print()
-                print(colored("No files.", 'magenta'))
-                print()
+                print_with_new_lines(colored("No files.", 'magenta'))
             else:
                 print_current_files(files)
         elif (fileName == ","):
@@ -522,18 +481,14 @@ def file_s_input():
                 fileToDelete = files[int(fileToDeleteIndex)]
 
                 while ((fileToDelete in files) == False):
-                    print()
-                    print(colored("Invalid index. Try again!", 'red'))
-                    print()
+                    print_with_new_lines(colored("Invalid index. Try again!", 'red'))
                     fileToDeleteIndex = input(
                         "Select the file's index from the list above to delete it -> "
                     )
                     fileToDeleteIndex = int(fileToDeleteIndex) - 1
                     fileToDelete = files[fileToDeleteIndex]
 
-                print()
-                print(str(fileToDelete) + " deleted.")
-                print()
+                print_with_new_lines(str(fileToDelete) + " deleted.")
 
                 files.remove(fileToDelete)
 
@@ -554,9 +509,7 @@ def file_s_input():
 
                     if (fileName == "0"):
                         if (len(files) == 0):
-                            print()
-                            print(colored("No files.", 'magenta'))
-                            print()
+                            print_with_new_lines(colored("No files.", 'magenta'))
                         else:
                             print_current_files(files)
                     elif (fileName == ","):
@@ -660,9 +613,7 @@ def file_s_input():
                 print()
                 files = files[:-1]
             else:
-                print()
-                print(colored("File input is finished", 'magenta'))
-                print()
+                print_with_new_lines(colored("File input is finished", 'magenta'))
 
             fileExistsCheck = 1
 
@@ -1132,9 +1083,7 @@ def find(decryptionKey, srcImgFile):
 
     # Check if the header is big enough for a zip
     # -> If it is, then read the header
-    headerCheck = check_file_size_zip(srcImgFile)
-
-    if (headerCheck == 0):
+    if has_enough_space_for_header(srcImgFile):
 
         zipHeader = ""
         actualZipHeader = "1010000010010110000001100000100"
@@ -1462,11 +1411,10 @@ def main():
     show_banner()
 
     while (userMenuInput != 3):
-        main_menu()
+        show_main_menu()
 
         try:
             userMenuInput = int(input("Menu option selection -> "))
-            userMenuInput = int(userMenuInput)
 
             if (userMenuInput == 3):  # Option 3 --> Quit
                 print()
@@ -1542,9 +1490,7 @@ def main():
                                 hideMenuInput = 3
 
                     except ValueError:
-                        print()
-                        print(colored("Invalid Input. Try again.", 'red'))
-                        print()
+                        print_with_new_lines(colored("Invalid Input. Try again.", 'red'))
 
             elif (userMenuInput == 2):  # Option 3 --> Find a message
                 decodeInputKey, decodeSrcImgPath = find_input()
