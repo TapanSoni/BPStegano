@@ -121,3 +121,8 @@ This piece of software is fully owned by Tapan Soni. BPStegano is free to use an
 ## Academic Paper
 BPStegano is the subject of a academic research paper submitted and accepted to the 2020 National Cyber Summit in Huntsville, Alabama.
 Here is the link to that paper (Springer AISC 2020) - https://link.springer.com/chapter/10.1007/978-3-030-58703-1_9
+
+
+## Stargazers over time :)
+
+[![Stargazers over time](https://starchart.cc/TapanSoni/BPStegano.svg)](https://starchart.cc/TapanSoni/BPStegano)
