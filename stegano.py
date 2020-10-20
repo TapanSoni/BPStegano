@@ -63,7 +63,7 @@ from cryptography.hazmat.backends import default_backend
 from colorama import init
 from colorama import Fore, Back, Style
 from termcolor import colored
-from progress_bar import ProgressBar, InitBar
+# from progress_bar import ProgressBar, InitBar
 
 import sys
 import os
@@ -697,7 +697,7 @@ def find_input():
 def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
          multipleInputFlag):
 
-    prog = InitBar()
+    # prog = InitBar()
 
     if (multipleInputFlag == True):
         zippedFileInput = zipfile.ZipFile("input.zip",
@@ -959,9 +959,9 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
         col = 0
         row += 1
 
-        progBar = cipherTextIterator / sizeOfCipher
-        progBar = progBar * 100
-        prog(progBar)
+        # progBar = cipherTextIterator / sizeOfCipher
+        # progBar = progBar * 100
+        # prog(progBar)
 
     # LOOP OVER
     # This if statement runs when the size of the cipherText is larger than the amount of available pixels indicated
@@ -1045,9 +1045,9 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
 
             col = 0
             row += 1
-            progBar = cipherTextIterator / sizeOfCipher
-            progBar = progBar * 100
-            prog(progBar)
+            # progBar = cipherTextIterator / sizeOfCipher
+            # progBar = progBar * 100
+            # prog(progBar)
 
     print()
 
@@ -1073,7 +1073,8 @@ def hide(encryptionKey, secretMsg, srcImgFile, dstImgFile, files,
 
 def find(decryptionKey, srcImgFile):
 
-    decodeProg = InitBar()
+    # decodeProg = InitBar()
+    # prog = InitBar(title = "Finding...", size = 100, offset = 4, )
 
     multipleFiles = False
 
@@ -1251,9 +1252,9 @@ def find(decryptionKey, srcImgFile):
         col = 0
         row += 1
 
-        progBar = cipherTextIterator / messageLength
-        progBar = progBar * 100
-        decodeProg(progBar)
+        # progBar = cipherTextIterator / messageLength
+        # progBar = progBar * 100
+        # decodeProg(progBar)
 
     # LOOP OVER
     if cipherTextIterator < messageLength:
@@ -1313,9 +1314,9 @@ def find(decryptionKey, srcImgFile):
 
             col = 0
             row += 1
-            progBar = cipherTextIterator / messageLength
-            progBar = progBar * 100
-            decodeProg(progBar)
+            # progBar = cipherTextIterator / messageLength
+            # progBar = progBar * 100
+            # decodeProg(progBar)
 
     print("\n")
 
