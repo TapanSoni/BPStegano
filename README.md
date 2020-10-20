@@ -119,4 +119,10 @@ This software is provided as is. Neither the authors nor Rowan University take a
 This piece of software is fully owned by Tapan Soni. BPStegano is free to use and modify for personal use. In any use case, the following condition must be met: **Proper credit must be given to the authors of BPStegano in any and all cases each and everytime.** For commercial use or for any other use that's not personal, for example but not limited to public use or for profit, Tapan Soni must be contacted before usage is authorized.
 
 ## Academic Paper
-BPStegano is the subject of a academic research paper submitted and accepted to the 2020 National Cyber Summit in Huntsville, Alabama. Appropriate links to the paper will be updated at a later date .
+BPStegano is the subject of a academic research paper submitted and accepted to the 2020 National Cyber Summit in Huntsville, Alabama.
+Here is the link to that paper (Springer AISC 2020) - https://link.springer.com/chapter/10.1007/978-3-030-58703-1_9
+
+
+## Stargazers over time :)
+
+[![Stargazers over time](https://starchart.cc/TapanSoni/BPStegano.svg)](https://starchart.cc/TapanSoni/BPStegano)
